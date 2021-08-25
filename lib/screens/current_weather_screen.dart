@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:rain_clouds/models/weather_model.dart';
 import 'package:rain_clouds/views/current_address.dart';
+import 'package:rain_clouds/views/today_detail_item.dart';
+import 'package:rain_clouds/views/today_weather_details.dart';
 import 'package:rain_clouds/views/today_weather_preview.dart';
 
 class CurrentWeatherScreen extends StatefulWidget {
@@ -25,9 +28,10 @@ class _CurrentWeatherScreenState extends State<CurrentWeatherScreen> {
                 if (snapshot.hasData) {
                   return ListView(
                     children: [
-                      // CurrentAddress(snapshot: snapshot, userAddress: widget.userLocation),
+                      CurrentAddress(snapshotNew: snapshot, userAddress: widget.userLocation),
                       TodayWeatherPreview(snapshot: snapshot),
-                      SizedBox(height: 50),
+                      TodayWeatherDetails(snapshotPro: snapshot),
+                      // TodayWeatherDetails(iconName: FeatherIcons.droplet, itemName: 'Humidity', itemValue: '${snapshot.data!.current.humidity}%')
                     ],
                   );
                 } else {

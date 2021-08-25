@@ -7,14 +7,14 @@ import 'package:rain_clouds/models/weather_model.dart';
 import 'package:rain_clouds/utils/date_format.dart';
 
 class CurrentAddress extends StatelessWidget {
-  final AsyncSnapshot<WeatherModel> snapshot;
+  final AsyncSnapshot<WeatherModel> snapshotNew;
   final Placemark userAddress;
-  const CurrentAddress({Key? key, required this.snapshot, required this.userAddress}) : super(key: key);
+  const CurrentAddress({Key? key, required this.snapshotNew, required this.userAddress}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var formattedDate = DateTimeFormat.getFormattedDate(
-        DateTime.fromMillisecondsSinceEpoch(snapshot.data!.current.dt * 1000));
+        DateTime.fromMillisecondsSinceEpoch(snapshotNew.data!.current.dt * 1000));
     return
     Container(
       margin: EdgeInsets.all(30),

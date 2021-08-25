@@ -29,7 +29,7 @@ class _TodayWeatherPreviewState extends State<TodayWeatherPreview> {
               LitColor.gradientBlue,
             ],
           )),
-      margin: EdgeInsets.symmetric(horizontal: 30, vertical: 70),
+      margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       child: Stack(
         clipBehavior: Clip.none,

@@ -21,7 +21,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   int _selectedIndex = 0; //selected index of the bottom nav bar
   PageController pageController = PageController(
     initialPage: 0,
@@ -34,7 +33,9 @@ class _HomeScreenState extends State<HomeScreen> {
       body: PageView(
         controller: pageController,
         children: [
-          CurrentWeatherScreen(openWeatherApiData: widget.weatherData, userLocation: widget.place),
+          CurrentWeatherScreen(
+              openWeatherApiData: widget.weatherData,
+              userLocation: widget.place),
           DailyForecastScreen(),
           SearchScreen(),
           SettingsScreen(),
@@ -65,7 +66,9 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 18),
             child: GNav(
-              color: Colors.blueGrey.shade300, ///Inactive Icon Color
+              color: Colors.blueGrey.shade300,
+
+              ///Inactive Icon Color
               // Theme.of(context).disabledColor
               // Colors.white.withOpacity(0.3)
               rippleColor: Colors.transparent,
@@ -76,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
               iconSize: 28,
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
               duration: const Duration(milliseconds: 450),
-              curve : Curves.bounceIn,
+              curve: Curves.bounceIn,
 
               tabs: [
                 GButton(
@@ -116,8 +119,17 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => SearchScreen()));
+        },
+        child: Icon(FeatherIcons.search, color: Colors.white),
+        backgroundColor: LitColor.lightBox,
+      ),
     );
   }
+
   void onPageChange(int index) {
     setState(() {
       _selectedIndex = index;
