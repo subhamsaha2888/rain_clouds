@@ -4,7 +4,7 @@ import 'package:rain_clouds/models/weather_model.dart';
 import 'package:rain_clouds/services/open_weather_api.dart';
 import 'package:rain_clouds/services/user_location.dart';
 import 'package:geocoding/geocoding.dart';
-
+import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'home_screen.dart';
 
 class LoadingScreen extends StatefulWidget {
@@ -42,11 +42,13 @@ class _LoadingScreenState extends State<LoadingScreen> {
     forecastObject = OpenWeatherApi.getCityWeather(
         latitude: location.latitude, longitude: location.longitude);
 
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen(weatherData: forecastObject, place: placeDetails)));
 
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => HomeScreen(weatherData: forecastObject, place: placeDetails,)));
+
+    // Navigator.push(
+    //     context,
+    //     MaterialPageRoute(
+    //         builder: (context) => HomeScreen(weatherData: forecastObject, place: placeDetails,)));
 
     // Future.delayed(Duration(seconds: 1), () {
     //   ;
@@ -75,7 +77,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
       // backgroundColor: Colors.blueGrey.shade900,
       body: Center(
         child: Lottie.asset(
-          'assets/splash_animation.json',
+          'images/splash_animation.json',
           width: 250,
           height: 250,
           // frameRate: FrameRate(170),

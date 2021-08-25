@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:rain_clouds/models/weather_model.dart';
+import 'package:rain_clouds/views/current_address.dart';
+import 'package:rain_clouds/views/today_weather_preview.dart';
 
 class CurrentWeatherScreen extends StatefulWidget {
   final Future<WeatherModel> openWeatherApiData;
@@ -16,28 +18,30 @@ class _CurrentWeatherScreenState extends State<CurrentWeatherScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: FutureBuilder<WeatherModel>(
-            future: widget.openWeatherApiData,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text('${widget.userLocation.locality}'),
-                    Text('${snapshot.data!.current.temp.toStringAsFixed(0)}'),
-                    //TODO expanded today details widget here
-                    SizedBox(height: 50),
-                  ],
-                );
-              } else {
-                return Container(
-                  // By default, show a loading spinner.
-                  child: Center(child: CircularProgressIndicator()),
-                );
-              }
-            }),
+        child: Container(
+          child: FutureBuilder<WeatherModel>(
+              future: widget.openWeatherApiData,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView(
+                    children: [
+                      // CurrentAddress(snapshot: snapshot, userAddress: widget.userLocation),
+                      TodayWeatherPreview(snapshot: snapshot),
+                      SizedBox(height: 50),
+                    ],
+                  );
+                } else {
+                  return Container(
+                    // By default, show a loading spinner.
+                    child: Center(child: CircularProgressIndicator()),
+                  );
+                }
+              }),
+        ),
       ),
     );
   }
 }
+
+// Text('${widget.userLocation.locality}'),
+// Text('${snapshot.data!.current.temp.toStringAsFixed(0)}'),

@@ -151,7 +151,8 @@ class Hourly {
       temp: json['temp'],
       feelsLike: json['feels_like'],
       pressure: json['pressure'],
-      humidity: json['humidity'],
+      humidity: json['h'
+          'umidity'],
       dewPoint: json['dew_point'],
       uvi: json['uvi'],
       clouds: json['clouds'],
@@ -161,7 +162,8 @@ class Hourly {
       windGust: json['wind_gust'],
       hourlyWeather: (json['weather'] as List).map((x) => HourlyWeather.fromJson(x)).toList(),
       pop: json['pop'],
-      rain: json['rain'] != null ? new Rain.fromJson(json['rain']) : null,
+      rain: json['rain'] != null ? new Rain.fromJson(json['rain'
+          '']) : null,
     );
   }
 }

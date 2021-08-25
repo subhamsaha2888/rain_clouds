@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rain_clouds/screens/home_screen.dart';
 import 'package:rain_clouds/screens/loading_screen.dart';
+import 'package:rain_clouds/utils/display_mode.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initDisplayMode();
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       /// transparent status bar
